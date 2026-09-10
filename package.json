@@ -8,7 +8,9 @@
   "main": "src/server.ts",
   "scripts": {
     "dev": "tsx watch src/server.ts",
-    "start": "tsx src/server.ts",
+    "build": "tsup",
+    "start": "node dist/server.js",
+    "migrate": "prisma migrate deploy",
     "typecheck": "tsc --noEmit",
     "test": "npm run typecheck"
   },
@@ -17,13 +19,14 @@
     "@prisma/client": "^7.10.0",
     "dotenv": "^17.4.2",
     "express": "^5.2.1",
-    "pg": "^8.23.0"
+    "pg": "^8.23.0",
+    "prisma": "^7.10.0"
   },
   "devDependencies": {
     "@types/express": "^5.0.6",
     "@types/node": "^26.4.1",
     "@types/pg": "^8.23.1",
-    "prisma": "^7.10.0",
+    "tsup": "^8.5.1",
     "tsx": "^4.23.13",
     "typescript": "^7.0.2"
   }

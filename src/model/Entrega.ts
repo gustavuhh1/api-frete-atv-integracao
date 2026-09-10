@@ -1,11 +1,14 @@
-interface Status {
-  id: number;
-  nome: string;
+export enum StatusEntrega {
+  PENDENTE = "PENDENTE",
+  EM_TRAFEGO = "EM_TRAFEGO",
+  ENTREGUE = "ENTREGUE",
+  CANCELADO = "CANCELADO",
 }
 
 export class Entrega {
   id: number;
-  cep: string;
+  cepOrigem: string;
+  cepDestino: string;
   rua: string;
   bairro: string;
   cidade: string;
@@ -14,18 +17,18 @@ export class Entrega {
   complemento: string;
   numero: string;
   tipoResidencia: string;
-  peso: number;
   distancia: number;
   taxaImposto: number;
   taxaFrete: number;
-  status: Status;
+  produtoId: number;
+  status: StatusEntrega;
   remetente: string;
   destinatario: string;
-  validado: boolean;
 
   constructor(
     id: number = 0,
-    cep: string = "",
+    cepOrigem: string = "",
+    cepDestino: string = "",
     rua: string = "",
     bairro: string = "",
     cidade: string = "",
@@ -34,17 +37,17 @@ export class Entrega {
     complemento: string = "",
     numero: string = "",
     tipoResidencia: string = "",
-    peso: number = 0,
     distancia: number = 0,
     taxaImposto: number = 0,
     taxaFrete: number = 0,
-    status: Status = { id: 0, nome: "" },
+    produtoId: number = 0,
+    status: StatusEntrega = StatusEntrega.PENDENTE,
     remetente: string = "",
     destinatario: string = "",
-    validado: boolean = false,
   ) {
     this.id = id;
-    this.cep = cep;
+    this.cepOrigem = cepOrigem;
+    this.cepDestino = cepDestino;
     this.rua = rua;
     this.bairro = bairro;
     this.cidade = cidade;
@@ -53,13 +56,12 @@ export class Entrega {
     this.complemento = complemento;
     this.numero = numero;
     this.tipoResidencia = tipoResidencia;
-    this.peso = peso;
     this.distancia = distancia;
     this.taxaImposto = taxaImposto;
     this.taxaFrete = taxaFrete;
+    this.produtoId = produtoId;
     this.status = status;
     this.remetente = remetente;
     this.destinatario = destinatario;
-    this.validado = validado;
   }
 }

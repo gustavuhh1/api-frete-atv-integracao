@@ -13,9 +13,22 @@ enum StatusEntrega {
   CANCELADO
 }
 
+model Produto {
+  id        Int       @id @default(autoincrement())
+  nome      String
+  descricao String
+  preco     Float
+  quantidade Int
+  peso      Float
+  importado Boolean  @default(false)
+  categoria String
+  entregas  Entrega[]
+}
+
 model Entrega {
   id             Int           @id @default(autoincrement())
-  cep            String
+  // Endereço de destino (preenchido via ViaCEP)
+  cepDestino     String
   rua            String
   bairro         String
   cidade         String
@@ -24,22 +37,18 @@ model Entrega {
   complemento    String
   numero         String
   tipoResidencia String
-  peso           Float
+  // Endereço de origem
+  cepOrigem      String
+  // Calculados automaticamente
   distancia      Float
   taxaImposto    Float
   taxaFrete      Float
+  // Produto associado
+  produtoId      Int
+  produto        Produto       @relation(fields: [produtoId], references: [id])
+  // Status
   status         StatusEntrega @default(PENDENTE)
+  // Pessoas
   remetente      String
   destinatario   String
-}
-
-model Produto {
-  id         Int     @id @default(autoincrement())
-  nome       String
-  descricao  String
-  preco      Float
-  quantidade Int
-  peso       Float
-  importado  Boolean @default(false)
-  categoria  String
 }
