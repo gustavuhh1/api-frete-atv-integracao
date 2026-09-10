@@ -6,14 +6,15 @@ datasource db {
   provider = "postgresql"
 }
 
-model Status {
-  id       Int       @id @default(autoincrement())
-  nome     String
-  entregas Entrega[]
+enum StatusEntrega {
+  PENDENTE
+  EM_TRAFEGO
+  ENTREGUE
+  CANCELADO
 }
 
 model Entrega {
-  id             Int    @id @default(autoincrement())
+  id             Int           @id @default(autoincrement())
   cep            String
   rua            String
   bairro         String
@@ -27,8 +28,7 @@ model Entrega {
   distancia      Float
   taxaImposto    Float
   taxaFrete      Float
-  statusId       Int
-  status         Status @relation(fields: [statusId], references: [id])
+  status         StatusEntrega @default(PENDENTE)
   remetente      String
   destinatario   String
 }
