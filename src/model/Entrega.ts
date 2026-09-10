@@ -15,6 +15,7 @@ export class Entrega {
   status: Status;
   remetente: string;
   destinatario: string;
+  validado: boolean;
 
   constructor(
     id: number = 0,
@@ -28,6 +29,7 @@ export class Entrega {
     status: Status = { id: 0, nome: "" },
     remetente: string = "",
     destinatario: string = "",
+    validado: boolean = false,
   ) {
     this.id = id;
     this.cep = cep;
@@ -40,5 +42,6 @@ export class Entrega {
     this.status = status;
     this.remetente = remetente;
     this.destinatario = destinatario;
+    this.validado = validado;
   }
 }
