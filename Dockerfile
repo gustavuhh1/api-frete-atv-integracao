@@ -25,6 +25,9 @@ RUN npm install --omit=dev
 COPY --from=builder /usr/src/app/prisma ./prisma
 COPY --from=builder /usr/src/app/prisma.config.ts ./prisma.config.ts
 COPY --from=builder /usr/src/app/dist ./dist
+# swagger-jsdoc le os comentarios @openapi das rotas em tempo de execucao,
+# entao o codigo-fonte (nao executado, so lido como texto) precisa estar na imagem.
+COPY --from=builder /usr/src/app/src ./src
 
 RUN DATABASE_URL="postgresql://placeholder:placeholder@localhost:5432/placeholder" npx prisma generate
 

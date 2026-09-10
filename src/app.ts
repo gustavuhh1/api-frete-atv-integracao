@@ -4,7 +4,9 @@ import express, {
   type Request,
   type Response,
 } from "express";
+import swaggerUi from "swagger-ui-express";
 
+import { swaggerSpec } from "./docs/swagger.ts";
 import enderecoRoutes from "./routes/endereco.routes.ts";
 import entregaRoutes from "./routes/entrega.routes.ts";
 import produtoRoutes from "./routes/produto.routes.ts";
@@ -18,9 +20,32 @@ const app = express();
 
 app.use(express.json());
 
+/**
+ * @openapi
+ * /:
+ *   get:
+ *     tags: [Status]
+ *     summary: Verifica se a API está no ar
+ *     responses:
+ *       200:
+ *         description: API funcionando
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 mensagem:
+ *                   type: string
+ *                   example: API de frete em funcionamento
+ */
 app.get("/", (req: Request, res: Response) => {
   res.json({ mensagem: "API de frete em funcionamento" });
 });
+
+app.get("/docs.json", (req: Request, res: Response) => {
+  res.json(swaggerSpec);
+});
+app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 app.use("/api/enderecos", enderecoRoutes);
 app.use("/api/entregas", entregaRoutes);
