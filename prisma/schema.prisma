@@ -23,6 +23,8 @@ model Entrega {
   complemento    String
   numero         String
   tipoResidencia String
+  peso           Float
+  distancia      Float
   taxaImposto    Float
   taxaFrete      Float
   statusId       Int

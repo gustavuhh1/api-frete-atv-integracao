@@ -14,6 +14,8 @@ export class Entrega {
   complemento: string;
   numero: string;
   tipoResidencia: string;
+  peso: number;
+  distancia: number;
   taxaImposto: number;
   taxaFrete: number;
   status: Status;
@@ -31,6 +33,8 @@ export class Entrega {
     complemento: string = "",
     numero: string = "",
     tipoResidencia: string = "",
+    peso: number = 0,
+    distancia: number = 0,
     taxaImposto: number = 0,
     taxaFrete: number = 0,
     status: Status = { id: 0, nome: "" },
@@ -47,6 +51,8 @@ export class Entrega {
     this.complemento = complemento;
     this.numero = numero;
     this.tipoResidencia = tipoResidencia;
+    this.peso = peso;
+    this.distancia = distancia;
     this.taxaImposto = taxaImposto;
     this.taxaFrete = taxaFrete;
     this.status = status;

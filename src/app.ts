@@ -5,8 +5,8 @@ import express, {
   type Response,
 } from "express";
 
-import enderecoRoutes from "./route/endereco.routes.ts";
-import entregaRoutes from "./route/entrega.routes.ts";
+import enderecoRoutes from "./routes/endereco.routes.ts";
+import entregaRoutes from "./routes/entrega.routes.ts";
 import {
   CepInvalidoError,
   CepNaoEncontradoError,
