@@ -7,6 +7,10 @@ export class Entrega {
   id: number;
   cep: string;
   rua: string;
+  bairro: string;
+  cidade: string;
+  uf: string;
+  estado: string;
   complemento: string;
   numero: string;
   tipoResidencia: string;
@@ -20,6 +24,10 @@ export class Entrega {
     id: number = 0,
     cep: string = "",
     rua: string = "",
+    bairro: string = "",
+    cidade: string = "",
+    uf: string = "",
+    estado: string = "",
     complemento: string = "",
     numero: string = "",
     tipoResidencia: string = "",
@@ -32,6 +40,10 @@ export class Entrega {
     this.id = id;
     this.cep = cep;
     this.rua = rua;
+    this.bairro = bairro;
+    this.cidade = cidade;
+    this.uf = uf;
+    this.estado = estado;
     this.complemento = complemento;
     this.numero = numero;
     this.tipoResidencia = tipoResidencia;
