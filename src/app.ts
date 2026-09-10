@@ -6,6 +6,7 @@ import express, {
 } from "express";
 
 import enderecoRoutes from "./route/endereco.routes.ts";
+import entregaRoutes from "./route/entrega.routes.ts";
 import {
   CepInvalidoError,
   CepNaoEncontradoError,
@@ -21,6 +22,7 @@ app.get("/", (req: Request, res: Response) => {
 });
 
 app.use("/api/enderecos", enderecoRoutes);
+app.use("/api/entregas", entregaRoutes);
 
 app.use((req: Request, res: Response) => {
   res.status(404).json({ erro: "Rota não encontrada" });

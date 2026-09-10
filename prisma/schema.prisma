@@ -1,0 +1,32 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Status {
+  id       Int       @id @default(autoincrement())
+  nome     String
+  entregas Entrega[]
+}
+
+model Entrega {
+  id             Int    @id @default(autoincrement())
+  cep            String
+  rua            String
+  bairro         String
+  cidade         String
+  uf             String
+  estado         String
+  complemento    String
+  numero         String
+  tipoResidencia String
+  taxaImposto    Float
+  taxaFrete      Float
+  statusId       Int
+  status         Status @relation(fields: [statusId], references: [id])
+  remetente      String
+  destinatario   String
+}
