@@ -1,0 +1,34 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum StatusEntrega {
+  PENDENTE
+  EM_TRAFEGO
+  ENTREGUE
+  CANCELADO
+}
+
+model Entrega {
+  id             Int           @id @default(autoincrement())
+  cep            String
+  rua            String
+  bairro         String
+  cidade         String
+  uf             String
+  estado         String
+  complemento    String
+  numero         String
+  tipoResidencia String
+  peso           Float
+  distancia      Float
+  taxaImposto    Float
+  taxaFrete      Float
+  status         StatusEntrega @default(PENDENTE)
+  remetente      String
+  destinatario   String
+}

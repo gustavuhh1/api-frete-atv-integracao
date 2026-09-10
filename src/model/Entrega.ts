@@ -7,9 +7,15 @@ export class Entrega {
   id: number;
   cep: string;
   rua: string;
+  bairro: string;
+  cidade: string;
+  uf: string;
+  estado: string;
   complemento: string;
   numero: string;
   tipoResidencia: string;
+  peso: number;
+  distancia: number;
   taxaImposto: number;
   taxaFrete: number;
   status: Status;
@@ -21,9 +27,15 @@ export class Entrega {
     id: number = 0,
     cep: string = "",
     rua: string = "",
+    bairro: string = "",
+    cidade: string = "",
+    uf: string = "",
+    estado: string = "",
     complemento: string = "",
     numero: string = "",
     tipoResidencia: string = "",
+    peso: number = 0,
+    distancia: number = 0,
     taxaImposto: number = 0,
     taxaFrete: number = 0,
     status: Status = { id: 0, nome: "" },
@@ -34,9 +46,15 @@ export class Entrega {
     this.id = id;
     this.cep = cep;
     this.rua = rua;
+    this.bairro = bairro;
+    this.cidade = cidade;
+    this.uf = uf;
+    this.estado = estado;
     this.complemento = complemento;
     this.numero = numero;
     this.tipoResidencia = tipoResidencia;
+    this.peso = peso;
+    this.distancia = distancia;
     this.taxaImposto = taxaImposto;
     this.taxaFrete = taxaFrete;
     this.status = status;
