@@ -1,57 +1,45 @@
-import { Produto } from "../model/Produto.js";
+import { prisma } from "../lib/prisma.ts";
 
-export default class ProdutoService {
-  private produtos: Produto[] = [];
-  private proximoId: number = 1;
+// Criar produto
+export async function criarProduto(dados: {
+  nome: string;
+  descricao: string;
+  preco: number;
+  quantidade: number;
+  peso: number;
+  importado: boolean;
+  categoria: string;
+}) {
+  return await prisma.produto.create({ data: dados });
+}
 
-  // Criar um novo produto
-  public criar(dados: Omit<Produto, "id">): Produto {
-    const novoProduto = new Produto(
-      this.proximoId++,
-      dados.nome,
-      dados.descricao,
-      dados.preco,
-      dados.quantidade,
-      dados.peso,
-      dados.importado,
-      dados.categoria
-    );
-    this.produtos.push(novoProduto);
-    return novoProduto;
-  }
+// Listar todos os produtos
+export async function listarProdutos() {
+  return await prisma.produto.findMany();
+}
 
-  // Listar todos os produtos
-  public listarTodos(): Produto[] {
-    return this.produtos;
-  }
+// Buscar produto por ID
+export async function buscarProdutoPorId(id: number) {
+  return await prisma.produto.findUnique({ where: { id } });
+}
 
-  // Buscar produto por ID
-  public buscarPorId(id: number): Produto | undefined {
-    return this.produtos.find((p) => p.id === id);
-  }
+// Atualizar produto
+export async function atualizarProduto(
+  id: number,
+  dados: Partial<{
+    nome: string;
+    descricao: string;
+    preco: number;
+    quantidade: number;
+    peso: number;
+    importado: boolean;
+    categoria: string;
+  }>,
+) {
+  return await prisma.produto.update({ where: { id }, data: dados });
+}
 
-  // Alterar informações de um produto
-  public atualizar(id: number, dados: Partial<Omit<Produto, "id">>): Produto | null {
-    const produto = this.buscarPorId(id);
-    if (!produto) return null;
-
-    if (dados.nome !== undefined) produto.nome = dados.nome;
-    if (dados.descricao !== undefined) produto.descricao = dados.descricao;
-    if (dados.preco !== undefined) produto.preco = dados.preco;
-    if (dados.quantidade !== undefined) produto.quantidade = dados.quantidade;
-    if (dados.peso !== undefined) produto.peso = dados.peso;
-    if (dados.importado !== undefined) produto.importado = dados.importado;
-    if (dados.categoria !== undefined) produto.categoria = dados.categoria;
-
-    return produto;
-  }
-
-  // Excluir um produto por ID
-  public excluir(id: number): boolean {
-    const index = this.produtos.findIndex((p) => p.id === id);
-    if (index === -1) return false;
-
-    this.produtos.splice(index, 1);
-    return true;
-  }
+// Excluir produto
+export async function excluirProduto(id: number) {
+  return await prisma.produto.delete({ where: { id } });
 }

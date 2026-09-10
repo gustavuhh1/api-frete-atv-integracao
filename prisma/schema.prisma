@@ -32,3 +32,14 @@ model Entrega {
   remetente      String
   destinatario   String
 }
+
+model Produto {
+  id         Int     @id @default(autoincrement())
+  nome       String
+  descricao  String
+  preco      Float
+  quantidade Int
+  peso       Float
+  importado  Boolean @default(false)
+  categoria  String
+}
